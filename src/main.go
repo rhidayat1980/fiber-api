@@ -2,12 +2,11 @@ package main
 
 import (
 	"fmt"
+	// dialect for sql
 
 	"github.com/gofiber/fiber"
 	"github.com/gofiber/fiber/middleware"
 	"github.com/jinzhu/gorm"
-
-	// dialect for sql
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/rhidayat1980/fiber-api/book"
 	"github.com/rhidayat1980/fiber-api/database"

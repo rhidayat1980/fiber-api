@@ -1,0 +1,76 @@
+apiVersion: skaffold/v1beta13
+kind: Config
+
+profiles:
+  - name: minikube
+    activation:
+      - kubeContext: minikube
+    build:
+      artifacts:
+        - image: rhidayat1980/fiber-api
+          docker:
+            dockerfile: Dockerfile
+            noCache: false
+      local:
+        push: true
+      tagPolicy:
+        gitCommit: {}
+
+    deploy:
+      helm:
+        releases:
+          - name: fiber-api
+            remote: true
+            chartPath: fiber-api
+            valuesFiles: [fiber-api/values.yaml]
+            namespace: minikube
+            values:
+              image.image: fiber-api
+  # - name: dev
+  #   build:
+  #     artifacts:
+  #       - image: fiber-api
+  #         docker:
+  #           dockerfile: Dockerfile
+  #   deploy:
+  #     helm:
+  #       releases:
+  #         - name: fiber-api
+  #           remote: true
+  #           chartPath: helm
+  #           valuesFiles: [helm/values.yaml]
+  #           namespace: minikube
+  #           values:
+  #             image.image: fiber-api
+  # - name: stg
+  #   build:
+  #     artifacts:
+  #       - image: fiber-api
+  #         docker:
+  #           dockerfile: Dockerfile
+  #   deploy:
+  #     helm:
+  #       releases:
+  #         - name: fiber-api
+  #           remote: true
+  #           chartPath: helm
+  #           valuesFiles: [helm/values.yaml]
+  #           namespace: minikube
+  #           values:
+  #             image.image: fiber-api
+  # - name: prod
+  #   build:
+  #     artifacts:
+  #       - image: fiber-api
+  #         docker:
+  #           dockerfile: Dockerfile
+  #   deploy:
+  #     helm:
+  #       releases:
+  #         - name: fiber-api
+  #           remote: true
+  #           chartPath: helm
+  #           valuesFiles: [helm/values.yaml]
+  #           namespace: minikube
+  #           values:
+  #             image.image: fiber-api

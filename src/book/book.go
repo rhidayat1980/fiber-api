@@ -1,10 +1,11 @@
 package book
 
 import (
+	// dialect for sql
+	//
+
 	"github.com/gofiber/fiber"
 	"github.com/jinzhu/gorm"
-
-	// dialect for sql
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/rhidayat1980/fiber-api/database"
 )
